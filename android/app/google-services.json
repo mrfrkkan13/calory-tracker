@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "801817223357",
+    "project_id": "calori-app",
+    "storage_bucket": "calori-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801817223357:android:9ecb5df6f14a0996ff57d4",
+        "android_client_info": {
+          "package_name": "com.example.calori_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801817223357-p837ponobopgkt9eej7isjph2bjgetke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2totrXqTS5xuI5m5LwFtq15cersTgzIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801817223357-p837ponobopgkt9eej7isjph2bjgetke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
