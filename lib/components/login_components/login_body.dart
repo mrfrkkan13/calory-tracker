@@ -25,22 +25,56 @@ class _LoginBodyState extends State<LoginBody> {
             )
         ),
 
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Login Account",
-                style: TextStyle(
-                  color: Colors.purple,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-                )
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom:10),
+                child: Text("Login Account",
+                  style: TextStyle(
+                    fontFamily: 'CaviarDreams',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  )
+                ),
               ),
-            ),
 
-            TextFieldComponent(textEditingController: _emailController, hintText: "E-Mail", ico: Icon(Icons.email_outlined)),
-            TextFieldComponent(textEditingController: _emailController, hintText: "Password", ico: Icon(Icons.lock)),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: TextFieldComponent(textEditingController: _emailController, hintText: "E-Mail", ico: Icon(Icons.email_outlined), obsecure: false),
+              ),
+              TextFieldComponent(textEditingController: _emailController, hintText: "Password", ico: Icon(Icons.lock), obsecure: true),
+
+
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: SizedBox(
+                  width: 100,
+                  child: ElevatedButton(
+                      onPressed: (){},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black
+                      ),
+                      child: Text("Login",
+                      style: TextStyle(fontSize: 15,
+                       color: Colors.white )
+                      )
+                  ),
+                ),
+              ),
+
+              TextButton(onPressed: (){}, child: Text("Don't you have any accounts?",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15
+                ),
+
+                )
+              )
+
+
+            ],
+          ),
         )
 
 

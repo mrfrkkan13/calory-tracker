@@ -6,8 +6,9 @@ class TextFieldComponent extends StatelessWidget {
   final textEditingController;
   final hintText;
   final Icon? ico;
+  final bool obsecure;
 
-  const TextFieldComponent({Key? key, required this.textEditingController, required this.hintText, required this.ico}) : super(key: key);
+  const TextFieldComponent({Key? key, required this.textEditingController, required this.hintText, required this.ico, required this.obsecure}) : super(key: key);
 
 
   @override
@@ -16,6 +17,7 @@ class TextFieldComponent extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width/1.2,
       child: TextField(
+        obscureText: obsecure,
         controller: textEditingController,
         decoration: InputDecoration(
             hintText: hintText,
@@ -27,7 +29,7 @@ class TextFieldComponent extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(width: 3, color: Colors.purple),
+              borderSide: BorderSide(width: 3, color: Colors.black),
             )),
       ),
     );
