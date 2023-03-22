@@ -1,3 +1,4 @@
+import 'package:calori_app/view/login/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const Scaffold(),
+      home: const Scaffold(
+        backgroundColor: Colors.black,
+        body: LoginPage(),
+      ),
     );
   }
 }
