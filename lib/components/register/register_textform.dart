@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:lottie/lottie.dart';
 
 class RegisterPageTextForm extends StatefulWidget {
   const RegisterPageTextForm({super.key});
@@ -26,31 +27,69 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            _textfieldName(usernameController),
-            _textfieldMail(emailController),
-            _textfieldPassword(passwordController),
-            _textfieldPassword(passwordConfirmController),
-            _costumRegisterButton(() {}),
-          ],
+    return ListView(
+      scrollDirection: Axis.vertical,
+      children: [
+        Container(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Container(
+                    width: 300,
+                    height: 300,
+                    child: LottieBuilder.asset(
+                        "assets/lottie/registerAnimation.json")),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _textfieldName(usernameController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _textfieldMail(emailController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _textfieldPassword(passwordController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _textfieldPassword(passwordConfirmController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _costumRegisterButton(() {}),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 
   Widget _costumRegisterButton(Function() onPressed) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.purple,
-      ),
-      onPressed: onPressed,
-      child: Text(
-        "Register",
-        style: TextStyle(color: Colors.white),
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Container(
+          width: 200,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30), color: Colors.purple),
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: TextButton(
+              onPressed: onPressed,
+              child: Text(
+                "Register",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -58,6 +97,7 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
   Widget _textfield(TextEditingController controller) {
     return TextField(
       controller: controller,
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
@@ -73,6 +113,7 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
   Widget _textfieldName(TextEditingController controller) {
     return TextField(
       controller: controller,
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.person),
           prefixIconColor: Colors.white,
@@ -90,6 +131,7 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
   Widget _textfieldMail(TextEditingController controller) {
     return TextField(
       controller: controller,
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.email),
           prefixIconColor: Colors.white,
@@ -107,6 +149,7 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
   Widget _textfieldPassword(TextEditingController controller) {
     return TextField(
       controller: controller,
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.lock),
           prefixIconColor: Colors.white,
