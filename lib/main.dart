@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import 'package:calori_app/views/meal_board_page/meal_board_page.dart';
 import 'package:calori_app/views/register/register_page.dart';
+=======
+import 'package:calori_app/view/login/login_page.dart';
+>>>>>>> dev
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +21,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
+<<<<<<< HEAD
       home: MealBoardPage(),
+=======
+      home: const Scaffold(
+        backgroundColor: Colors.black,
+        body: LoginPage(),
+      ),
+>>>>>>> dev
     );
   }
 }
