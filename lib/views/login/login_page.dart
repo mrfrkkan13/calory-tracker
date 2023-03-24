@@ -8,15 +8,11 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LoginTop(),
-        LoginBody()
-      ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
+        children: [/*LoginTop(),*/ LoginBody()],
+      ),
     );
   }
 }
-
-
-
-

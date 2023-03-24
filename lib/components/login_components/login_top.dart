@@ -7,7 +7,7 @@ class LoginTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SafeArea(
+       child:  SafeArea(
         child: Lottie.asset(
             "assets/lotties/login_lottie.json"
         ),
