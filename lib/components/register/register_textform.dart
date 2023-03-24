@@ -87,16 +87,11 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
                   child: _costumRegisterButton(() async{
 
 
-                   await Provider.of<UserProvider>(context,listen: false).postUser(emailController.text, passwordController.text);
+                   await Provider.of<UserProvider>(context,listen: false).postUser(emailController.text, passwordController.text, ageController.text, heightController.text, weightController.text);
 
 
-                   UserModelRT newUserRT = UserModelRT(name:usernameController.text, email: emailController.text, weight: weightController.text, height: heightController.text, age: ageController.text);
-                    Provider.of<UserProvider>(context, listen: false).postUserRT(newUserRT);
-
-
-
-
-
+                  /* UserModelRT newUserRT = UserModelRT(name:usernameController.text, email: emailController.text, weight: weightController.text, height: heightController.text, age: ageController.text);
+                    Provider.of<UserProvider>(context, listen: false).postUserRT(newUserRT);*/
 
 
 

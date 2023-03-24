@@ -5,6 +5,7 @@ import 'package:calori_app/views/register/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/user_login_model.dart';
 import '../../view_models/services/services.dart';
 
 class LoginBody extends StatefulWidget {
@@ -60,10 +61,10 @@ class _LoginBodyState extends State<LoginBody> {
                       child: ElevatedButton(
                           onPressed: () {
 
-                            UserModel logUser = UserModel(email: _emailController.text, password: _passwordController.text);
-                            //Services service = Services();
-                            //service.signIn(logUser);
-                            Provider.of<UserProvider>(context,listen: false).login(logUser);
+                         UserLoginModel logUser = UserLoginModel(email: _emailController.text, password: _passwordController.text);
+                          Services service = Services();
+                          service.signIn(logUser);
+                          // Provider.of<UserProvider>(context,listen: false).login(logUser);
 
                           },
                           style: ElevatedButton.styleFrom(
