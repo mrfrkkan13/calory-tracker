@@ -1,7 +1,10 @@
 import 'package:calori_app/splash_screen.dart';
-import '/view_models/providers/user_provider.dart';
+import 'package:calori_app/view_models/providers/nav_provider.dart';
+import 'package:calori_app/view_models/providers/user_provider.dart';
+import 'package:calori_app/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -14,15 +17,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ListenableProvider<UserProvider>(create: (_) => UserProvider()),
+      providers: [
+        ListenableProvider<NavigationProvider>(
+            create: (_) => NavigationProvider()),
+        ListenableProvider<UserProvider>(
+            create: (_) => UserProvider()),
       ],
-
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.teal,
-        ),
+        themeMode: ThemeMode.dark,
         home: SplashScreen(),
       ),
     );

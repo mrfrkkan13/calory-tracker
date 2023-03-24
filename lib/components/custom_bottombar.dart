@@ -1,8 +1,10 @@
+import 'package:calori_app/view_models/providers/nav_provider.dart';
 import 'package:calori_app/views/home_page.dart';
 import 'package:calori_app/views/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../views/calculate_page.dart';
+import '../views/add_food.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -13,69 +15,31 @@ class CustomBottomNavBar extends StatefulWidget {
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar>
     with TickerProviderStateMixin {
-  int _tabIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    var tab = TabController(initialIndex: _tabIndex, length: 3, vsync: this);
-
-    void _handleTabSelection() {
-      setState(() {
-        tab.index = _tabIndex;
-      });
-    }
-
-    tab.addListener(_handleTabSelection);
-
     return TabBar(
       indicatorWeight: 0.000001,
       labelPadding: EdgeInsets.zero,
       unselectedLabelColor: Colors.grey,
-      labelColor: Colors.amber,
-      controller: tab,
+      labelColor: Colors.purpleAccent,
+      onTap: (i) => Provider.of<NavigationProvider>(context, listen: false)
+          .setScreenIndex(i),
       tabs: [
-        GestureDetector(
-          child: Container(
+        Container(
+          width: double.infinity,
+          color: Colors.black,
+          child: Tab(
+            icon: Icon(Icons.home_outlined),
+          ),
+        ),
+        Container(
             width: double.infinity,
             color: Colors.black,
-            child: Tab(
-              icon: Icon(Icons.home_outlined),
-            ),
-          ),
-          onTap: () {
-            setState(() {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
-              _tabIndex = 0;
-            });
-          },
-        ),
-        GestureDetector(
-          child: Container(
-              width: double.infinity,
-              color: Colors.black,
-              child: Tab(icon: Icon(Icons.calculate_outlined))),
-          onTap: () {
-            setState(() {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => CalculatePage()));
-              _tabIndex = 1;
-            });
-          },
-        ),
-        GestureDetector(
-          child: Container(
-              width: double.infinity,
-              color: Colors.black,
-              child: Tab(icon: Icon(Icons.person_4_outlined))),
-          onTap: () {
-            setState(() {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
-              _tabIndex = 2;
-            });
-          },
-        )
+            child: Tab(icon: Icon(Icons.food_bank_outlined))),
+        Container(
+            width: double.infinity,
+            color: Colors.black,
+            child: Tab(icon: Icon(Icons.person_4_outlined)))
       ],
     );
   }

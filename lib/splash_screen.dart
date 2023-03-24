@@ -13,17 +13,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _navigateHome();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _navigateHome();
+  // }
 
-  _navigateHome() async {
-    await Future.delayed(Duration(seconds: 3), () {});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
-  }
+  // _navigateHome() async {
+  //   await Future.delayed(Duration(seconds: 3), () {});
+  //   Navigator.pushReplacement(
+  //       context, MaterialPageRoute(builder: (context) => HomePage()));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(width: 150, child: Image.asset("assets/images/logo.png")),
             Text(
               "Calori Count",
-              style: TextStyle(color: Colors.amber),
+              style: TextStyle(color: Colors.purpleAccent),
             ),
           ],
         ),
         duration: 3000,
-        splashTransition: SplashTransition.rotationTransition,
+        splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.black,
         nextScreen: LoginPage(),
       ),
