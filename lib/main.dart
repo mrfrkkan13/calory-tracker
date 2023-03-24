@@ -1,4 +1,5 @@
 import 'package:calori_app/splash_screen.dart';
+import 'package:calori_app/view_models/providers/food_api_provider.dart';
 import 'package:calori_app/view_models/providers/nav_provider.dart';
 import 'package:calori_app/view_models/providers/user_provider.dart';
 import 'package:calori_app/views/home_page.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
             create: (_) => NavigationProvider()),
         ListenableProvider<UserProvider>(
             create: (_) => UserProvider()),
+        ListenableProvider<FoodApiProvider>(create: (_) => FoodApiProvider()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
