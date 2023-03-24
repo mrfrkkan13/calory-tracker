@@ -1,7 +1,9 @@
 import 'package:calori_app/components/textfield_component.dart';
 import 'package:calori_app/models/usermodel.dart';
+import 'package:calori_app/view_models/providers/user_provider.dart';
 import 'package:calori_app/views/register/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../view_models/services/services.dart';
 
@@ -58,18 +60,10 @@ class _LoginBodyState extends State<LoginBody> {
                       child: ElevatedButton(
                           onPressed: () {
 
-
                             UserModel logUser = UserModel(email: _emailController.text, password: _passwordController.text);
-                            Services service = Services();
-
-                            service.signIn(logUser);
-
-
-
-
-
-
-
+                            //Services service = Services();
+                            //service.signIn(logUser);
+                            Provider.of<UserProvider>(context,listen: false).login(logUser);
 
                           },
                           style: ElevatedButton.styleFrom(

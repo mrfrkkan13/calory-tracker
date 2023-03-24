@@ -15,8 +15,6 @@ class UserProvider with ChangeNotifier{
   var services = Services();
   static bool statusCheck = false;
 
-
-
   void setUser(UserModel user){
     _userModel = user;
     notifyListeners();
@@ -26,6 +24,8 @@ class UserProvider with ChangeNotifier{
     _userModelRt = userrt;
     notifyListeners();
   }
+
+
 
   Future<void> postUser(String email, password) async{
     UserModel? u =await services.postUser(email, password);
@@ -41,5 +41,17 @@ class UserProvider with ChangeNotifier{
             setUserRt(uRT!);
           }
   }
+
+
+
+
+  Future<void> login(UserModel userModel) async {
+      final token = await services.signIn(userModel);
+      notifyListeners();
+  }
+
+
+
+
 
 }

@@ -19,7 +19,7 @@ class Services {
 
   Future<UserModelRT?> postUserInfo(UserModelRT user) async {
     http.Response response = await http.put(
-        getUrl("user1"),
+        getUrl("user"),
         body: json.encode({
             "id": user.id,
             "name": user.name,
