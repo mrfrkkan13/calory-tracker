@@ -1,6 +1,9 @@
 import 'package:calori_app/components/textfield_component.dart';
+import 'package:calori_app/models/usermodel.dart';
 import 'package:calori_app/views/register/register_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../view_models/services/services.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class LoginBody extends StatefulWidget {
 
 class _LoginBodyState extends State<LoginBody> {
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class _LoginBodyState extends State<LoginBody> {
                         obsecure: false),
                   ),
                   TextFieldComponent(
-                      textEditingController: _emailController,
+                      textEditingController: _passwordController,
                       hintText: "Password",
                       ico: Icon(Icons.lock),
                       obsecure: true),
@@ -52,7 +56,22 @@ class _LoginBodyState extends State<LoginBody> {
                     child: SizedBox(
                       width: 100,
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+
+                            UserModel logUser = UserModel(email: _emailController.text, password: _passwordController.text);
+                            Services service = Services();
+
+                            service.signIn(logUser);
+
+
+
+
+
+
+
+
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black),
                           child: Text("Login",

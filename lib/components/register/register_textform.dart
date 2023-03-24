@@ -1,12 +1,15 @@
+import 'dart:developer';
 import 'dart:io';
 
-import 'package:calori_app/services/services.dart';
+import 'package:calori_app/models/usermodel_realtime.dart';
+import 'package:calori_app/view_models/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:provider/provider.dart';
 import '../../models/usermodel.dart';
+import '../../view_models/services/services.dart';
 
 class RegisterPageTextForm extends StatefulWidget {
   const RegisterPageTextForm({super.key});
@@ -20,6 +23,9 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
   late TextEditingController usernameController;
   late TextEditingController passwordController;
   late TextEditingController passwordConfirmController;
+  late TextEditingController heightController;
+  late TextEditingController weightController;
+  late TextEditingController ageController;
 
   @override
   void initState() {
@@ -28,6 +34,9 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
     passwordController = TextEditingController();
     emailController = TextEditingController();
     passwordConfirmController = TextEditingController();
+    heightController = TextEditingController();
+    weightController = TextEditingController();
+    ageController = TextEditingController();
   }
 
   @override
@@ -51,6 +60,18 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
+                  child: _textfieldAge(ageController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _textfieldHeight(heightController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _textfieldWeight(weightController),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: _textfieldMail(emailController),
                 ),
                 Padding(
@@ -63,16 +84,30 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: _costumRegisterButton(() {
-                    // UserModel newUser = UserModel(
-                        // email: emailController.text,
-                        // name: usernameController.text,
-                       // password: passwordController.text
-                        // );
+                  child: _costumRegisterButton(() async{
 
-                    Services service = Services();
-                    service.postUser(emailController.text, passwordConfirmController.text);
+
+                   await Provider.of<UserProvider>(context,listen: false).postUser(emailController.text, passwordController.text);
+
+
+                   UserModelRT newUserRT = UserModelRT(name:usernameController.text, email: emailController.text, weight: weightController.text, height: heightController.text, age: ageController.text);
+                    Provider.of<UserProvider>(context, listen: false).postUserRT(newUserRT);
+
+
+
+
+
+
+
+
+
+                    //Services service = Services();
+                    //service.postUser(newUser, ageController.text, heightController.text,weightController.text);
+
                   }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                 ),
               ],
             ),
@@ -130,6 +165,66 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
           hintText: "Name",
+          hintStyle: TextStyle(color: Colors.grey),
+          prefixIcon: Icon(Icons.person),
+          prefixIconColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(width: 3, color: Colors.purple),
+          )),
+    );
+  }
+
+  Widget _textfieldHeight(TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+          hintText: "Height",
+          hintStyle: TextStyle(color: Colors.grey),
+          prefixIcon: Icon(Icons.person),
+          prefixIconColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(width: 3, color: Colors.purple),
+          )),
+    );
+  }
+
+  Widget _textfieldWeight(TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+          hintText: "weight",
+          hintStyle: TextStyle(color: Colors.grey),
+          prefixIcon: Icon(Icons.person),
+          prefixIconColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(width: 3, color: Colors.purple),
+          )),
+    );
+  }
+
+  Widget _textfieldAge(TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+          hintText: "Age",
           hintStyle: TextStyle(color: Colors.grey),
           prefixIcon: Icon(Icons.person),
           prefixIconColor: Colors.white,
