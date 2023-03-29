@@ -9,7 +9,7 @@ class LoginTop extends StatelessWidget {
     return Expanded(
        child:  SafeArea(
         child: Lottie.asset(
-            "assets/lotties/login_lottie.json"
+            "assets/lottie/login_lottie.json"
         ),
 
       ),

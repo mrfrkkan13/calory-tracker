@@ -15,7 +15,6 @@ class FoodServices {
     List<FoodModal> list = [];
     var data = jsonDecode(response.body)["items"];
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      print(data);
       for (var i in data) {
         list.add(FoodModal.fromMap(i));
       }

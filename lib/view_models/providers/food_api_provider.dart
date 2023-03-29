@@ -18,7 +18,8 @@ class FoodApiProvider with ChangeNotifier {
     List<FoodModal> temp = [];
     temp = await foodServices.getFood(query);
     temp.forEach((f) => _foodModals.add(f));
-    print(_foodModals);
+
     notifyListeners();
+
   }
 }

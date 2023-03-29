@@ -17,13 +17,19 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+
+   // final token = ModalRoute.of(context)?.settings.arguments;
+
+
     return TabBar(
       indicatorWeight: 0.000001,
       labelPadding: EdgeInsets.zero,
       unselectedLabelColor: Colors.grey,
       labelColor: Colors.purpleAccent,
-      onTap: (i) => Provider.of<NavigationProvider>(context, listen: false)
-          .setScreenIndex(i),
+      onTap: (i) { Provider.of<NavigationProvider>(context, listen: false).setScreenIndex(i);
+
+        },
+
       tabs: [
         Container(
           width: double.infinity,
@@ -42,6 +48,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar>
             child: Tab(icon: Icon(Icons.person_4_outlined)))
       ],
     );
+
   }
 }
 

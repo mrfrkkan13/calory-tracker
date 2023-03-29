@@ -32,9 +32,12 @@ class _SplashScreenState extends State<SplashScreen> {
         splash: Column(
           children: [
             SizedBox(width: 150, child: Image.asset("assets/images/logo.png")),
-            Text(
-              "Calori Count",
-              style: TextStyle(color: Colors.purpleAccent),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Text(
+                "Calori Count - Group 4",
+                style: TextStyle(color: Colors.purpleAccent),
+              ),
             ),
           ],
         ),

@@ -49,11 +49,11 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
             padding: EdgeInsets.all(8.0),
             child: Column(
               children: [
-                /* Container(
+                 Container(
                     width: 300,
                     height: 300,
                     child: LottieBuilder.asset(
-                        "assets/lottie/registerAnimation.json")),*/
+                        "assets/lottie/registerAnimation.json")),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: _textfieldName(usernameController),
@@ -87,7 +87,47 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
                   child: _costumRegisterButton(() async{
 
 
-                   await Provider.of<UserProvider>(context,listen: false).postUser(emailController.text, passwordController.text, ageController.text, heightController.text, weightController.text);
+
+                    if(passwordController.text == passwordConfirmController.text)
+                      {
+                        await Provider.of<UserProvider>(context,listen: false).postUser(emailController.text, passwordController.text, ageController.text, heightController.text, weightController.text);
+
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.green,
+                            content: Text('Register Successful!'),
+                            duration: Duration(seconds: 3), // Snackbar'ın ekranda kalacağı süre
+                            action: SnackBarAction(
+                              label: 'Okay',
+                              onPressed: () {
+                                //
+                              },
+                            ),
+                          ),
+                        );
+
+
+                      }
+
+                    else
+                      {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text('Please enter password correct!'),
+                            duration: Duration(seconds: 3),
+                            action: SnackBarAction(
+                              label: 'Okay',
+                              onPressed: () {
+                                //
+                              },
+                            ),
+                          ),
+                        );
+                      }
+
+
 
 
                   /* UserModelRT newUserRT = UserModelRT(name:usernameController.text, email: emailController.text, weight: weightController.text, height: heightController.text, age: ageController.text);
@@ -181,7 +221,7 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
       decoration: InputDecoration(
           hintText: "Height",
           hintStyle: TextStyle(color: Colors.grey),
-          prefixIcon: Icon(Icons.person),
+          prefixIcon: Icon(Icons.height),
           prefixIconColor: Colors.white,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
@@ -199,9 +239,9 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
       controller: controller,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-          hintText: "weight",
+          hintText: "Weight",
           hintStyle: TextStyle(color: Colors.grey),
-          prefixIcon: Icon(Icons.person),
+          prefixIcon: Icon(Icons.accessibility_new_rounded),
           prefixIconColor: Colors.white,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
@@ -221,7 +261,7 @@ class _RegisterPageTextFormState extends State<RegisterPageTextForm> {
       decoration: InputDecoration(
           hintText: "Age",
           hintStyle: TextStyle(color: Colors.grey),
-          prefixIcon: Icon(Icons.person),
+          prefixIcon: Icon(Icons.numbers),
           prefixIconColor: Colors.white,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),

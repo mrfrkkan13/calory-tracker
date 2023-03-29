@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
-        children: [/*LoginTop(),*/ LoginBody()],
+        children: [LoginTop(), LoginBody()],
       ),
     );
   }

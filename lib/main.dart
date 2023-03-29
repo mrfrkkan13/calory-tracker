@@ -19,11 +19,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ListenableProvider<NavigationProvider>(
-            create: (_) => NavigationProvider()),
-        ListenableProvider<UserProvider>(
-            create: (_) => UserProvider()),
+        ListenableProvider<NavigationProvider>(create: (_) => NavigationProvider()),
+        ListenableProvider<UserProvider>(create: (_) => UserProvider()),
         ListenableProvider<FoodApiProvider>(create: (_) => FoodApiProvider()),
+
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

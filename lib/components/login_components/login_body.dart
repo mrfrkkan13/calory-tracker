@@ -59,12 +59,13 @@ class _LoginBodyState extends State<LoginBody> {
                     child: SizedBox(
                       width: 100,
                       child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
 
                          UserLoginModel logUser = UserLoginModel(email: _emailController.text, password: _passwordController.text);
-                          Services service = Services();
-                          service.signIn(logUser);
-                          // Provider.of<UserProvider>(context,listen: false).login(logUser);
+
+                         await  Provider.of<UserProvider>(context,listen: false).login(logUser, context).toString();
+
+
 
                           },
                           style: ElevatedButton.styleFrom(

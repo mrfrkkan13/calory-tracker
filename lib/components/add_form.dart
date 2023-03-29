@@ -1,10 +1,15 @@
-import 'package:calori_app/models/food_modal.dart';
 import 'package:calori_app/view_models/providers/food_api_provider.dart';
+import 'package:calori_app/view_models/providers/nav_provider.dart';
+import 'package:calori_app/view_models/providers/user_provider.dart';
 import 'package:calori_app/view_models/services/food_services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
+import '../models/food_modal.dart';
+import '../view_models/services/services.dart';
+
+import '../models/user_food_model.dart';
 
 class AddFormWidget extends StatefulWidget {
   const AddFormWidget({super.key});
@@ -15,7 +20,6 @@ class AddFormWidget extends StatefulWidget {
 
 class _AddFormWidgetState extends State<AddFormWidget> {
   TextEditingController _tcontrol = TextEditingController();
-  TextEditingController _ncontrol = TextEditingController();
 
   // foodAdd() {
   //   setState(() {
@@ -70,7 +74,7 @@ class _AddFormWidgetState extends State<AddFormWidget> {
                   style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.white,
                       shape: const StadiumBorder()),
-                  onPressed: () {
+                  onPressed: () async {
                     Provider.of<FoodApiProvider>(context, listen: false)
                         .getFood(_tcontrol.text);
                   },
@@ -94,12 +98,41 @@ class _AddFormWidgetState extends State<AddFormWidget> {
                                   color: Colors.black38,
                                   child: ListTile(
                                     textColor: Colors.white,
-                                    title: Text(foodApiProvider
-                                        .getFoodModels[index].name!),
-                                    trailing: Text(
-                                        "${foodApiProvider.getFoodModels[index].servingSizeG} g"),
-                                    onTap: () {
-                                      //Profile ekle
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(foodApiProvider
+                                            .getFoodModels[index].name!),
+                                        Text(
+                                            "Cal: ${foodApiProvider.getFoodModels[index].calories} g")
+                                      ],
+                                    ),
+                                    subtitle: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              "Prot: ${foodApiProvider.getFoodModels[index].proteinG}"),
+                                          Text(
+                                              "Fat: ${foodApiProvider.getFoodModels[index].calories}"),
+                                          Text(
+                                              "Carbs: ${foodApiProvider.getFoodModels[index].carbohydratesTotalG}")
+                                        ]),
+                                    onTap: () async {
+                                      FoodModal f =
+                                          foodApiProvider.getFoodModels[index];
+                                      UserFoodModel food = UserFoodModel(
+                                          food: f.name!,
+                                          calories: f.calories!,
+                                          proteinG: f.proteinG!,
+                                          fatTotalG: f.fatTotalG!,
+                                          carbohydratesTotalG:
+                                              f.carbohydratesTotalG!,
+                                          date: DateTime.now());
+                                      context
+                                          .read<UserProvider>()
+                                          .addFood(food);
                                     },
                                   ),
                                 )),
